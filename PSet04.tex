@@ -1,0 +1,229 @@
+\documentclass{article}
+
+\usepackage{style/preamble}
+\usepackage{style/mytikz}
+\usepackage{parskip}
+
+\newcounter{dip}
+
+\begin{document}
+  \title{Problem Set 4 - Points at $\infty$}
+  \date{}
+  \maketitle
+
+
+
+
+
+
+
+\begin{mdframed}
+  Corrected Theorem 4.1 from PSet 02:
+  \begin{theorem}
+    Let $f$ be a non-constant holomorphic function defined near $z_0 \in \bbc$.
+    Suppose the Taylor series of $f$ near $z_0$ has the form
+    \begin{align*}
+      f(z) - f(z_0) = a_k (z - z_0)^k + a_{k+1} (z - z_0)^{k+1} + a_{k+2} (z - z_0)^{k+2} + \dots
+    \end{align*}
+    with $a_k \neq 0$.
+    Then there exists biholomorphic functions $\psi(z)$, $\phi(z)$ (with appropriate domains) such that
+    \begin{align*}
+      \psi \circ f \circ \phi (z) = z^k
+    \end{align*}
+  \end{theorem}
+\end{mdframed}
+
+
+
+\section{Complex projective space}
+
+Projectivization provides a technique for compactifying non-compact surfaces.
+However, as we will see tomorrow, this technique sometimes creates singularities so should be used with caution.
+
+\begin{definition}
+  The \emph{complex projective space} of dimension $n$ is the set
+  \begin{align*}
+    \bbp^n := \set{(z_0, z_1, \dots, z_n)  \mid  z_i \in \bbc \mbox{ and not all $z_i$ are zero}}/\sim
+  \end{align*}
+  where the equivalence $\sim$ is defined as
+  \begin{align*}
+    (z_0, z_1, \dots, z_n) \sim (\lambda z_0, \lambda z_1, \dots,\lambda z_n) \mbox{ for } \lambda \neq 0 \in \bbc
+  \end{align*}
+  The elements of $\bbp^n$ are written as $[z_0: z_1 : \dots : z_n]$ and the $z_i$'s are called \emph{homogeneous coordinates}.
+\end{definition}
+
+\begin{qbox}
+  Convince yourself that $\bbp^n$ is the space of complex lines passing through the origin in $\bbc^{n+1}$. (Such spaces are called Grassmannians.)
+\end{qbox}
+
+There is a natural embedding of $\bbc^n$ in $\bbp^{n}$ given by
+\begin{align*}
+  (z_0, z_1, \dots, z_{n-1}) \longmapsto [z_0 : z_1 : \dots : z_{n-1} : 1]
+\end{align*}
+It is easy to see that this map is injective. So we can think of $\bbc^n$ as a subset of $\bbp^n$.
+Any element in $\bbp^n$ of the form $[z_0 : z_1 : \dots : z_{n-1} : z_n]$ with $z_n \neq 1$ is in the image of the above embedding, hence
+\begin{align*}
+  \bbp^n \setminus \bbc^n
+  &= \set{ [z_0 : z_1 : \dots : z_{n-1} : 0] \mid z_i \in \bbc} \\
+  &\cong \bbp^{n-1}
+\end{align*}
+We think of the points in $\bbp^n \setminus \bbc^n$ as the ``points at $\infty$''.
+So $\bbp^n$ has ``$\bbp^{n-1}$ many'' points at $\infty$.
+
+We are mainly interested in the space $\bbp^2$.
+We will use the notation
+\begin{align*}
+  \bbp^2 = \set{ [z : w : t] }.
+\end{align*}
+The points at $\infty$ are then the points with $t = 0$ i.e. $\set{[z:w:0]}$.
+
+
+
+
+
+
+
+
+
+
+\section{Homogenization}
+Let $p(z,w)$ be a polynomial in two variables with complex coefficients.
+And let
+\begin{align*}
+  S_p = \set{(z,w) \mid  p(z,w) = 0} \subseteq \bbc^2
+\end{align*}
+\begin{definition}
+  A polynomial is \emph{homogeneous} if every monomial term in it has the same total degree.
+\end{definition}
+\emph{Homogenization} turns $p$ into a homogeneous polynomial $\conj{p}(z,w,t)$ in three variables, where we add powers of $t$ as needed to make each term of the same degree.
+\begin{ex}
+  If $p(z,w) = z^2 - w^3 - w$ then $\conj{p}(z,w,t) = z^2t - w^3 - wt^2$.
+  If $p(z,w) = z^2 - w^2 - w$ then $\conj{p}(z,w,t) = z^2 - w^2 - wt$.
+\end{ex}
+
+\begin{qbox}
+  Let $\conj{p}(z,w,t)$ is a homogeneous polynomial.
+  Prove that $(a,b,c)$ is a root of $\conj{p}$ if and only if $(\lambda a , \lambda b, \lambda c)$ is a root of $\conj{p}$ for $\lambda \neq 0 \in \bbc$.
+\end{qbox}
+
+Hence, we can ask for solutions of the homogeneous polynomial  $p(z,w,t)$  in the projective space $\bbp^2$.
+
+If $S_p$ is the set $\set{(z,w) \mid  p(z,w) = 0} \subseteq \bbc^2$ then denote
+\begin{align*}
+  \conj{S_p} := \set{[z:w:t] \mid  p(z,w,t) = 0} \subseteq \bbp^2.
+\end{align*}
+\begin{definition}
+  $\conj{S_p}$ is called the \emph{projectivization} of $S_p$.
+\end{definition}
+
+There is a natural embedding $S_p \rightarrow \conj{S_p}$ which sends a solution $(z,w)$ of $p$ to the solution $[z:w:1]$ of $\conj{p}$.
+The points in $\conj{S_p} \setminus S_p$ are called the points at $\infty$.
+
+
+% \begin{qbox}
+%   Describe the spaces $\bbc^1 = \set{[1:t]}$ and $\bbc^2 = \set{[1:w:t]}$ as solutions of certain polynomial equations.
+%   Show that projectivizations of $\bbc^1$ and $\bbc^2$ are precisely $\bbp^1$ and $\bbp^2$ respectively.
+%   \begin{align*}
+%     \conj{\bbc^1} = \bbp^1 \qquad \conj{\bbc^2} = \bbp^2
+%   \end{align*}
+% \end{qbox}
+
+For any homogeneous polynomial $\conj{p}$ the space $\conj{S_p}$ is compact. The proof of this is essentially the fact that closed subsets of compact sets are compact and zero sets of polynomials are closed. But because of the points at $\infty$ the argument is a bit more intricate, we won't go over the details.
+
+
+\begin{qbox}
+  Let $q(w)$ be a complex polynomial and let $p(z,w) = z^2 - q(w)$.
+  Find the number of points at $\infty$ for $\conj{S_p}$ for the following polynomials
+    \begin{enumerate}
+      \item $q(w) = w + b$, where $b \in \bbc$.
+      \item $q(w) = w^2 + bw + c$, where $b,c \in \bbc$.
+      \item $q(w) = w^n + a_{n-1} w^{n-1}+ \dots a_1 w + a_0$, where $a_i \in \bbc$ and $n \ge 3$.
+    \end{enumerate}
+\end{qbox}
+
+\begin{qbox}
+  Let $p(z,w)$ be an arbitrary polynomial with homogenization $\conj{p}(z,w,t)$.
+  What can you say about the number of points at $\infty$ for $\conj{S_p}$?
+  Can you interpret this result in terms of limits $\lim_{z \rightarrow \infty} z/w$?
+\end{qbox}
+
+\textbf{Fact:} when $q(w)$ is a non-constant polynomial of degree $\le 3$ with distinct roots and $p(z,w) = z^2 - q(w)$ the space $\conj{S_p}$ is a Riemann surface and the projection map
+\begin{align*}
+    \pi: \conj{S_p} &\longrightarrow \bbp^1 \\
+    [z:w:1] &\longmapsto w \\
+    [z:w:0]  &\longmapsto \infty
+\end{align*}
+is a complex differentiable map.
+
+\begin{qbox}
+  Using the Riemann--Hurwitz formula for the projection $\pi$, find the genus of the curves $\conj{S_p}$ when $p(z,w) = z^2 - q(w)$ and $q$ is a non-constant polynomial of degree $\le 3$ with distinct roots.
+\end{qbox}
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Fermat's conjecture for function fields}
+
+\begin{theorem}
+  The are no non-constant complex coefficient polynomial solutions to the equation
+  \begin{align*}
+    (x(t))^d + (y(t))^d  = (z(t))^d
+  \end{align*}
+  if $d > 2$, with $\mathrm{gcd}(x(t), y(t), z(t)) = 1$.
+\end{theorem}
+
+\begin{proof}
+  Consider the polynomial $p(z,w) = z^d + w^d - 1$ with homogenization $p(z,w,t) = z^d + w^d - t^d$.
+  $\conj{S_p}$ has exactly $d$ points at $\infty$ given by $z^d + w^d = 0$, namely
+  \begin{align*}
+    [\zeta_1:1:0]\:, \: [\zeta_2:1:0]\:, \dots,\: [\zeta_d:1:0] \mbox{ where } \zeta^d_i = -1
+  \end{align*}
+  One can show that the projection map
+  \begin{align*}
+      \pi: \conj{S_p} &\longrightarrow \bbp^1 \\
+      [z:w:1] &\longmapsto w \\
+      [z:w:0]  &\longmapsto \infty
+  \end{align*}
+  is a complex differentiable map, and hence a ramified covering.
+
+  Consider a point $w \in \bbc$. The points in $\pi^{-1}(w)$ are the elements $[z:w:1]$
+  such that $z^d = 1 - w^d$.
+  Hence,
+  \begin{enumerate}
+    \item $\pi^{-1}(w)$ has size $d$ if $ 1 - w^d \neq 0$,
+    \item $\pi^{-1}(w)$ has size $1$ if $ w^d = 0$,
+    \item $\pi^{-1}(\infty)$ has size $d$.
+  \end{enumerate}
+
+  This tells us that there are $d$ branch points given by the $d^{th}$ roots of unity, call them $\tau_1, \dots, \tau_d$, and the fiber over each branch point is single element $[0:\tau_i:1]$.
+
+  Plugging this in the Riemann--Hurwitz formula we get
+  \begin{align*}
+    \chi(\conj{S_p})
+    &= d \cdot \chi(\bbp^1) - \sum_{d} (d - 1) \\
+    &= 3d - d^2
+  \end{align*}
+
+  Hence if $d > 2$, $\chi(\conj{S_p}) < 2$ and hence genus of $\conj{S_p} > 0$.
+  Hence if $d > 2$, there are no non-constant complex differentiable maps
+  \begin{align*}
+    \bbp^1 \longrightarrow \conj{S_p}
+  \end{align*}
+
+  But a solution $(x(s),y(s),z(s))$ to the equation $x^d + y^d = z^d$ defines a complex differentiable map
+  \begin{align*}
+    \bbp^1 &\longrightarrow \conj{S_p} \\
+    s &\longmapsto [x(s) : y(s) : z(s)]
+  \end{align*}
+  extended to $\infty$ by taking the limit. This map would be non-constant if $\mathrm{gcd}(x,y,z) = 1$. But no such map exists.
+\end{proof}
+
+\end{document}

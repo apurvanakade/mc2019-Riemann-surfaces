@@ -1,0 +1,42 @@
+\documentclass{amsart}
+\usepackage{style/preamble}
+\usepackage{parskip}
+\begin{document}
+  \section{Complex analysis theorems}
+  Let $U$ be an open subset of $\bbc$.
+  Let $f: U \rightarrow \bbc$ be a continuous function.
+
+  $f$ is called (once) \emph{complex differentiable} at $a \in U$ if the limit
+  \begin{align*}
+    f'(z) := \lim_{h \rightarrow 0} \dfrac{f(z + h) - f(z)}{h}
+  \end{align*}
+  exists for all $z$ in some neighborhood of $a$.
+
+  \begin{theorem}[Taylor series]
+    If $f$ is once differentiable at $a$, then $f$ is infinitely differentiable at $a$ and $f$ has a Taylor series converging to it in a neighborhood of $a$.
+    \begin{align*}
+      f(z) = f(a) + f'(a){(z-a)} +  f''(a)\dfrac{(z-a)^2}{2!} + \dots +  f^{(n)}(a)\dfrac{(z-a)^n}{n!} + \dots
+    \end{align*}
+  \end{theorem}
+
+  \begin{theorem}[Open mapping theorem]
+    If $f$ is complex differentiable then for any open set $V \subseteq U$, the set $f(V)$ is an open subset of $\bbc$.
+  \end{theorem}
+
+  \begin{theorem}[Isolated zeroes]
+    If $f$ is complex differentiable then the set of zeroes of $f$ are isolated i.e. if $f(a) = 0$ for some $a \in U$ then there exists a neighborhood $V$ of $a$ such that $a$ is the only zero of $f$ in $V$.
+  \end{theorem}
+
+\vspace{1cm}
+
+  A complex differentiable function $g: \bbc \rightarrow \bbc$ is called an \emph{entire} function.
+  \begin{theorem}[Liouville's theorem]
+    Let $g$ be an entire function.
+    If there exists a real number $M$ such that $|g(z)| < M$ for all $z \in \bbc$ then $g(z)$ is a constant function.
+  \end{theorem}
+
+  \begin{theorem}[Little Picard's theorem]
+    Let $g$ be an entire function.
+    If $g$ is not a constant function then the image of $g$ is either the whole complex plane or the plane minus a single point.
+  \end{theorem}
+\end{document}

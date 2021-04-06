@@ -1,0 +1,132 @@
+\section{Inverses of functions}
+Riemann surfaces naturally arise when trying to invert complex functions. As in the real case, the inverse of the function $f(x) = x^2$ is not well-defined. There are multiple ways to remedy this, but the most \emph{geometric} solution is to study the graph $y = x^2$ as a subset of $\bbr^2$ and use this to construct inverses wherever they make sense.
+
+We do the same for complex functions. Let $p(z)$ be a polynomial of degree $n$. Finding the inverse function is equivalent to solving
+\begin{align*}
+  w = p(z)
+\end{align*}
+to get $z$ in terms of $w$.
+This is almost never possible, so instead we study the graph
+\begin{align*}
+  \Gamma_{p(z)} :=
+  \set{ (z,w): w = p(z)} \subseteq \bbc^2
+\end{align*}
+Denote by $\pi: \bbc^2$ the projection onto the $w$- coordinate axis\footnote{We are working over complex numbers, so everything is twice the dimension of real numbers. So a complex axis is complex dimension 1 but real dimension 2.}.
+$\Gamma_{p(z)}$ is an example of a Riemann surface!
+Our first goal is to undestand the geometry of this object. We'll do this using the projection $\pi$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Ramified coverings}
+Consider the restriction of $\pi$ to $\Gamma_{p(z)}$.
+\begin{align*}
+  \pi : \Gamma_{p(z)} \rightarrow \bbc
+\end{align*}
+\begin{qbox}
+  Show that this map is surjective.
+\end{qbox}
+The inverse set $\pi^{-1}(w)$ (called the \emph{fiber} over $w$) is the set of roots of $p(z) - w$.
+\begin{qbox}
+  Prove that there are only finitely many values of $w$ for which $\pi^{-1}(w)$ has size $< n$. And that outside this set the fiber has size exactly $n$.
+\end{qbox}
+
+\begin{definition}
+  For $w \in \bbc$, if the polynomial $p(z) - w$ has distinct roots, then $w$ is called \emph{unramified}.
+  This is equivalent to requiring that the fiber $\pi^{-1}(w)$ has size $n$.
+  If $p(z) - w$ has repeated roots then, if $z$ is a repeated root of $p(z) - w$ of order $k$ we say that the \emph{ramification index} $e_P$ of $P = (z,w)$ is $k$.
+\end{definition}
+\begin{qbox}
+  For $w_0 \in \bbc$, let $\pi^{-1}(w_0) = \set{P_1, \dots, P_l}$, then
+  \begin{align*}
+    e_{P_1} + \dots + e_{P_l} = n
+  \end{align*}
+\end{qbox}
+\begin{figure}[H]
+\centering
+  \includegraphics[width=5cm]{example-image}
+  % \includegraphics[width=]{}
+  \caption{Picture of ramification}
+  \label{figure:ramification}
+\end{figure}
+
+A much stronger statement is true on the topological level.
+Let $w$ be an unramified value. Then $p(z) - w$ has $n$ distinct roots $z_1, \dots, z_n$. If we perturb $w$ slightly then the corresponding roots $z_i$ will also get perturbed slightly.
+
+For $\epsilon \in \bbr$ let $B_\epsilon(w) \subset \bbc$ denote a ball of radius $\epsilon$ around $w$.
+\begin{theorem}
+  \label{theorem:coveringMap}
+  For an unramified value $w \in \bbc$, let $z_1, \dots, z_n$ be the distinct roots of $p(z) - w$.
+  Then there exists an $\epsilon$ such that $\pi^{-1}(B_\epsilon(w))$ has the following properties.
+  \begin{enumerate}
+    \item $\pi^{-1}(B_\epsilon(w))$ has $n$-connected components $U_1, \dots, U_n$,
+    \item $z_i \in U_i$,
+    \item the projections $\pi: U_i \rightarrow B_\epsilon(w)$ are a homeomorphism.
+  \end{enumerate}
+\end{theorem}
+
+Theorem \ref{theorem:coveringMap} is saying that the map $\pi$ restricted to the fibers of unramified values is a \emph{covering map}
+\begin{align*}
+  \pi: \pi^{-1}(\mbox{\{unramified values\}}) \longrightarrow \mbox{\{unramified values\}}.
+\end{align*}
+
+In Figure \ref{figure:ramification} the ramified points appear to be singular, but
+
+A graph is always homeomorphic to the base i.e. the
+\begin{align*}
+  \bbc &\rightarrow \Gamma_{p(z)}
+  z \mapsto (z, p(z))
+\end{align*}
+is always a homeomorphism.
+So the Riemann surface we have constructed is homeomorphic to $\bbc$ itself!
+We'll improve upon this in the following sections.
+
+
+
+
+
+
+
+
+
+
+\subsection{Sections as inverse functions}
+We now have a way of constructing inverse functions, which relies on the following theorem from topology.
+
+A space is said to be \emph{simply-connected} if it is path-connected and every loop in $X$ can be continuously deformed to a point.
+
+\begin{theorem}
+  If $X$ is a simply-connected space and $\pi:Y \rightarrow X$ is a finite covering of $X$ of degree $n$ then $Y$ is homeomorphic to $n$-disjoint copies of $X$ and the projection map on each connected component is a homeomorphism.
+  \begin{equation*}
+    \begin{tikzcd}
+      Y \cong X_1 \sqcup \dots \sqcup X_n\\
+      X_i
+      \ar[d, "\cong", "\pi"'] \\
+      X
+    \end{tikzcd}
+  \end{equation*}
+  This statement is also true when the covering is not finite. In this case, $Y$ is a disjoint union of infinitely many components.
+\end{theorem}
+
+Now we have a meaninful procedure to construct inverse functions of ramified coverings of $\bbc$.
+Consider the ramified covering $\pi: \Gamma_{p(z)} \rightarrow \bbc$ with ramified values $w_1, \dots, w_l$ (these are called the \emph{branch points}).
+\begin{enumerate}
+  \item Consider the set of unramified points $\bbc \setminus \set{w_1, \dots, w_l}$. This set is never simply-connected (unless $l = 0$).
+  \item Pick an arbitrary open subset $U$ of $\bbc \setminus \set{w_1, \dots, w_l}$ which is simply-connected. This is usually done by removing rays (called \emph{branch cuts}) emanating from the points $w_i$.
+  \item The restriction $\pi: p^{-1}(U) \rightarrow U$ is a finite covering of a simply-connected connected space $U$, hence $U \cong U_1 \sqcup \dots \sqcup U_n$.
+  \item Pick an aribtrary connected component $U_i$ so that $\pi:U_i \rightarrow U$ is a homeomorphism. Because this is a homeomorphism it has an inverse $\pi_i^{-1}: U \rightarrow U_i$.
+  \item The function $\pi_i^{-1}$ followed by projection onto the $z$-coordinate is then an inverse of the function $p$. It is called a \emph{branch} of the inverse function (and so there are $n$ possible branches).
+\end{enumerate}
+We need to choose \emph{branch cuts} and a \emph{branch} to define an inverse function.
+\begin{ex}
+  \todo{add an example here.}
+\end{ex}

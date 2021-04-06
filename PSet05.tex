@@ -1,0 +1,157 @@
+\documentclass{article}
+
+\usepackage{style/preamble}
+\usepackage{parskip}
+\usepackage[normalem]{ulem}
+
+\begin{document}
+  \title{\sout{Problem Set} 5 - Affine charts}
+  \date{}
+  \maketitle
+
+
+
+
+
+
+\section{Singularities}
+\textbf{Notation:} Set of solutions of a bunch of polynomial equations is called a \emph{variety}. Varities in $\bbc^n$ are called \emph{affine varities} and varities in $\bbp^n$ are called \emph{projective varieties}.
+
+We'll start with two examples of singularities, one in $\bbc^2$ and one in $\bbp^1$.
+
+\begin{ex}
+  The affine variety given by $p(z,w) = z^2 - w^2$ is an intersection of two lines, and hence has a singularity at $(0,0)$.
+  In general, if the lowest degree terms in $p(z,w)$ are of degree $\ge 2$ then the corresponding variety has a singularity at $(0,0)$ and hence is not a Riemann surface.
+  As far as varieties in $\bbc^2$ are concerned, this is the only way singularities arise but in higher dimensions the singularities are much more complicated and hence interesting.
+\end{ex}
+
+\begin{ex}[Hyperelliptic curve]
+  Consider $p(z,w) = z^2 - q(w)$ with $q(w) = w^4 - w$.
+  The homogenization of $p$ is $\conj{p}(z,w,t) = z^2 t^2 - w^4 - w t^3$.
+  The points at $\infty$ are given by plugging in $t = 0$,
+  \begin{align*}
+    \conj{p}(z,w,t) &= 0 \\
+    w^4 &= 0
+  \end{align*}
+  So there is exactly one point at $\infty$, namely $[1:0:0]$.
+
+  The projection map $\conj{S_p} \rightarrow \bbp^1$ sending $[z:w:1] \mapsto w$ and $[1:0:0] \mapsto \infty$ is a degree 2 map which ramifies at 5 points: the roots of $q(z)$ and $\infty$.
+
+  Plugging in Riemann-Hurwitz we get:
+  \begin{align*}
+    \chi(\conj{S_p})
+    &= 2 \cdot \chi(\bbp^1) - \sum_{5}\mathrm{index} - 1 \\
+    &= 4 - 5 \\
+    &= -1
+  \end{align*}
+  But there is no surface with Euler characteristic -1.
+  The reason we see this is that $\conj{S_p}$ is not a Riemann surface and has a singularity at $\infty$.
+\end{ex}
+
+
+
+
+
+
+\section{Affine charts on $\bbp^2$}
+There is a natural cover of $\bbp^2$ given by three open sets
+\begin{align*}
+  \bbp^2
+  &= \set{[z : w : t] \mid \mbox{ not all } z,w,t \mbox{ zero}} \\
+  &= \set{[z : w : 1]} \cup \set{[z : 1 : t]} \cup \set{[1 : w : t]} \\
+  &=: U_t \cup U_w \cup U_z
+\end{align*}
+We can define charts on these as
+\begin{align*}
+  \varphi_z: U_z &\longrightarrow \bbc^2 \\
+  [1 : w : t] &\longmapsto (w,t)\\\\
+  \varphi_z: U_w &\longrightarrow \bbc^2 \\
+  [z : 1 : t] &\longmapsto (z,t)\\\\
+  \varphi_z: U_t &\longrightarrow \bbc^2 \\
+  [z : w : 1] &\longmapsto (z,w)
+\end{align*}
+A projective variety $\conj{S_p}$ cut out by the polynomial $\conj{p}(z,w,t)$ is a Riemann surface if and only if the affine varities $\conj{S_p} \cap U_t$, $\conj{S_p} \cap U_w$, and $\conj{S_p} \cap U_z$ are Riemann surfaces.
+These are called \emph{affine charts} on $\conj{S_p}$.
+
+The varieties
+$\conj{S_p} \cap U_t$, $\conj{S_p} \cap U_w$, $\conj{S_p} \cap U_z$
+can be described as
+\begin{align*}
+  \conj{S_p} \cap U_t
+  &= \set{(z,w) \mid \conj{p}(z,w,1) = 0} \\\\
+  \conj{S_p} \cap U_w
+  &= \set{(z,t) \mid \conj{p}(z,1,t) = 0} \\\\
+  \conj{S_p} \cap U_z
+  &= \set{(w,t) \mid \conj{p}(1,w,t) = 0}
+\end{align*}
+In order to check that a projective variety is a Riemann surface, we first break the variety into affine charts, and then check that each of the charts is a Riemann surface using the Jacobian.
+
+
+
+
+
+
+
+
+
+
+
+\section{Jacobian}
+\begin{theorem}
+  The affine variety $S = \set{(z,w) : p(z,w) = 0} \subseteq \bbc^2$ is a Riemann surface if the Jacobian, defined as
+  \begin{align*}
+    J(z,w) := \begin{bmatrix} \dfrac{\partial p}{\partial z} & \dfrac{\partial p}{\partial w} \end{bmatrix}
+  \end{align*}
+  does not vanish, at all points $(z,w)$ in $S$.
+\end{theorem}
+\begin{proof}[Proof]
+  The reason is essentially that if at $(z,w)$, we have $\dfrac{\partial p}{\partial z} \neq 0$ then projection onto the $w$ coordinate locally defines a chart around $(z,w)$.
+  Similarly, if at $(z,w)$, we have $\dfrac{\partial p}{\partial w} \neq 0$ then projection onto the $z$ coordinate locally defines a chart around $(z,w)$.
+  If both are non-zero then both charts are valid and the deritvatives of transition functions are given by the rational functions
+  \begin{align*}
+    \left(\frac{\partial p}{\partial w}\right) \cdot \left(\frac{\partial p}{\partial z}\right)^{-1}
+  \end{align*}
+  which are complex differentiable as the denominator is non-zero.
+\end{proof}
+
+\begin{ex}
+  The polynomial $z^2 - q(w)$ has Jacobian $\begin{bmatrix} 2z & -q'(w) \end{bmatrix}$. The Jacobian vanishes 0 precisely when $z = 0$ and $q'(w) = 0$. For this to be true for a point on the curve, $z=0 \implies q(w) = 0$. Both $q(w) = 0 $ and $q'(w) = 0$ implies that $w$ is a repeated root of $q$.
+  Thus the corresponding variety is a Riemann surface if $q(w)$ has no repeated roots.
+\end{ex}
+
+\begin{ex}[Fermat]
+  For the projective variety cut out by $\conj{p}(z,w,t) = z^p + w^p - t^p$, the three affine charts are given by
+  \begin{align*}
+    z^p + w^p - 1  &&& \begin{bmatrix} pz^{p-1} & pw^{p-1} \end{bmatrix}\\
+    z^p + 1 - t^p &&& \begin{bmatrix} pz^{p-1} & pt^{p-1} \end{bmatrix}\\
+    1 + w^p - t^p &&& \begin{bmatrix} pw^{p-1} & pt^{p-1} \end{bmatrix}
+  \end{align*}
+  The Jacobians vanish at $(0,0)$ but these points are not on the affine varities.
+\end{ex}
+
+\begin{ex}[Elliptic curves]
+  The equation $z^2 = w^3 + w$ has homogenization $\conj{p}(z,w,t) = z^2 t - w^3 - w t^2$.
+  In the three charts this polynomial and the Jacobians become
+  \begin{align*}
+    z^2  - w^3 - w  &&& \begin{bmatrix} 2z & -3w^2 - 1 \end{bmatrix}\\
+    z^2 t - 1 - t^2 &&& \begin{bmatrix} 2zt & z^2 - 2t \end{bmatrix}\\
+    t - w^3 - w t^2 &&& \begin{bmatrix} 1 - 2wt & -3w^2 - t^2 \end{bmatrix}
+  \end{align*}
+  It is easy to see that all the Jacobians do not vanish anywhere on the varieties.
+\end{ex}
+
+\begin{ex}[Hyperelliptic curves]
+  The equation $z^2 = w^4 + w$ has homogenization $\conj{p}(z,w,t) = z^2 t^2 - w^3 - w t^3$.
+  In the three charts this polynomial and the Jacobians become
+  \begin{align*}
+    z^2  - w^4 - w  &&& \begin{bmatrix} 2z & -4w^3 - 1 \end{bmatrix}\\
+    z^2 t^2 - 1 - t^3 &&& \begin{bmatrix} 2zt^2 & 2z^2t - 3t^2 \end{bmatrix}\\
+    t^2 - w^3 - w t^3 &&& \begin{bmatrix} 2t - 3wt^2 & -3w^2 - t^2 \end{bmatrix}
+  \end{align*}
+  In this case, the third Jacobian vanishes at the point $(0,0)$ which is on the curve, and hence our original projective variety is singular at the point at $\infty$.
+\end{ex}
+
+It is possible to remove singularities of hyperelliptic curves ($z^2 = q(w)$ with $\deg q > 3$) by putting charts at $\infty$ artificially.
+The resulting Riemann surface has genus $\left \lfloor{\dfrac{\deg q - 1}{2}}\right \rfloor $. See \\ \url{https://en.wikipedia.org/wiki/Hyperelliptic_curve#Genus_of_the_curve}.
+
+\end{document}

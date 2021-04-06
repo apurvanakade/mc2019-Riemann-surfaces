@@ -1,0 +1,247 @@
+\documentclass{article}
+
+\usepackage{style/preamble}
+\usepackage{style/mytikz}
+\usepackage{parskip}
+
+\begin{document}
+  \title{Problem Set 1 - The Riemann Sphere}
+  \date{}
+  \maketitle
+
+    \begin{mdframed}
+      Corrected open mapping theorem statement:
+      \begin{theorem}[Open mapping theorem]
+        \label{th:OpenMappingTheorem}
+        If $f:U \rightarrow \bbc$ is a \emph{non-constant} complex differentiable then for any open set $V \subseteq U$, the set $f(V)$ is an open subset of $\bbc$.
+      \end{theorem}
+    \end{mdframed}
+
+    \section*{Holomorphic functions on $\bbp^1$}
+    A complex differentiable function $f: X \rightarrow \bbc$ is called a \emph{holomorphic} function on $X$.
+
+    The Riemann sphere $\bbp^1$ is the set $\bbc \cup \set{\infty}$.
+    We write $\bbp^1$ as the union of two sets
+    \begin{align*}
+      U_1 = \bbc && U_2 = \bbc \setminus \set{0} \cup \set{\infty}
+    \end{align*}
+    The set $U_1$ is the standard complex plane, but the set $U_2$ is not.
+    We can turn $U_2$ into the complex plane by using the following function
+    \begin{align*}
+      \varphi_2 : U_2 &\longrightarrow \bbc \\
+      z &\mapsto z^{-1} \mbox{ if } z \neq \infty \\
+      \infty &\mapsto 0
+    \end{align*}
+    Thus we can think of $\bbp^1$ as two copies of the complex plane ($U_1$ and $\varphi_2(U_2)$) glued together.
+
+    A function $f: \bbp^1 \rightarrow \bbc$ is defined as a pair of functions
+    \begin{align*}
+      f_1 : U_1 \rightarrow \bbc && f_2 : U_2 \rightarrow \bbc
+    \end{align*}
+    such that $f_1$ and $f_2$ agree on $U_1 \cap U_2$.
+
+    We can only make sense of the complex differentiable functions when both the source and target are open subsets of $\bbc$. For this reason, we define holomorphic functions on $\bbp^1$ as follows.
+
+    A function $f: \bbp^1 \rightarrow \bbc$ is holomorphic if
+    \begin{enumerate}
+      \item $f|_{U_1}$ is holomorphic,
+      \item $f \circ \varphi_2^{-1}|_{\varphi(U_2)}$ is holomorphic.
+    \end{enumerate}
+    \begin{equation*}
+      \begin{tikzcd}
+        U_1 \ar[r,"f|_{U_1}"] &  \bbc\\
+        U_2 \ar[d, "\varphi_2"] \ar[r, "f"] & \bbc \\
+        \bbc \ar[u, "\varphi_2^{-1}", bend left] \ar[ur, "f \circ \varphi_2^{-1}", swap, dashed]
+      \end{tikzcd}
+    \end{equation*}
+
+    \begin{qbox}
+      Check that defining a function $f: \bbp^1 \rightarrow \bbc$ is equivalent to defining a pair of functions
+      \begin{align*}
+        f_1: U_1 &\longrightarrow \bbc \\
+        f_2 \circ \varphi_2^{-1}: \varphi(U_2) &\longrightarrow \bbc \\
+      \end{align*}
+      such that
+      \begin{align*}
+        f_1(z) = f_2 \circ \varphi_2^{-1}(z^{-1}) \mbox{ whenever } z \neq 0.
+      \end{align*}
+      Note that the source of both $f_1$ and $f_2 \circ \varphi_2^{-1}$ is $\bbc$.
+    \end{qbox}
+
+    It is kinda hard to come up with examples because of the following theorem.
+
+    \begin{theorem}
+      The only holomorphic functions on $\bbp^1$ are the constant functions.
+    \end{theorem}
+    The proof is in the following exercises.
+
+    A subset $V$ of a topological space $X$ is compact if it has the following property.
+    \begin{quote}
+      Every infinite sequence has a convergent subsequence i.e. for every infinite sequence of points $a_1, a_2, \dots $ in $V$ there exists a subsequence $a_{n_1}, a_{n_2}, a_{n_3}, \dots$ which converges to a point in $V$.
+    \end{quote}
+    % For subsets of $\bbr^n$ or $\bbc^n$ this is equivalent to saying that $X$ is closed and bounded.
+
+    \begin{qbox}
+      Prove that compact subsets $V$ of a (nice) topological space $X$ are closed i.e. if a sequence of points $a_1, a_2, \dots $ in $V$ converges to point $a \in X$ then $a$ is in $V$.
+    \end{qbox}
+
+    \begin{qbox}
+      Prove that every compact subset $V$ of $\bbc$ is bounded i.e. there exists a real number $M$ such that $z < M$ for all $z \in V$.
+    \end{qbox}
+
+    \begin{qbox}
+      \label{q:imageOfCompact}
+      Use the fact that every infinite sequence has a convergent subsequence to argue that for any continuous function $g: X \rightarrow Y $ the image of a compact set is compact.
+    \end{qbox}
+
+    Assume the following fact:
+    \begin{quote}
+      The Riemann sphere is a compact topological space.
+    \end{quote}
+    One way to see this is that the Riemann sphere is topologically isomorphic to the sphere $S^2$ in $\bbr^3$ (hence the name) which is a closed and bounded subset of $\bbr^3$. It is not hard to show that such subsets are compact.
+
+    \begin{qbox}
+      Argue that the image of any continuous function $f: \bbp^1 \rightarrow \bbc $ is bounded.
+    \end{qbox}
+
+    \begin{qbox}
+      Using Liouville's theorem, argue that if $f$ is a holomorphic function on $\bbp^1$ then $f|_{U_1}$ is a constant function.
+    \end{qbox}
+    \begin{qbox}
+      Using continuity, argue that if $f$ is a holomorphic function on $\bbp^1$ then $f$ is a constant function.
+    \end{qbox}
+
+
+
+
+
+
+
+
+
+    \section*{Meromorphic functions on $\bbc$}
+    A complex differentiable function $f: X \rightarrow \bbp^1$ is called a \emph{meromorphic} function on $X$.
+
+    We can only make sense of the complex differentiable functions when both the source and target are open subsets of $\bbc$. For this reason, we define meromorphic functions on $X$ as follows.
+
+    A function $f: X \rightarrow \bbp^1$ is meromorphic if
+    \begin{enumerate}
+      \item $f$ is holomorphic when restricted to $f^{-1}(U_1)$,
+      \item $\varphi_2 \circ f$ is holomorphic when restricted to ${f^{-1}(U_2)}$.
+    \end{enumerate}
+    \begin{equation*}
+      \begin{tikzcd}
+        f^{-1}(U_1) \ar[rr,"f"] & &  U_1 = \bbc\\
+        f^{-1}(U_2) \ar[rr, "f"] \ar[rrrr, "\varphi_2 \circ f", swap, bend right] & & U_2 \ar[rr, "\varphi_2"] & & \bbc
+      \end{tikzcd}
+    \end{equation*}
+
+    It gets tedious to keep track of all the inverses and the sources and targets.
+    We use the following shorthand notation to simplify the clutter.
+    Let $\varphi_1: U_1 \rightarrow \bbc$ be the identity function, $\varphi_1(z) = z$.
+    Then a function $f: X \rightarrow \bbp^1$ is meromorphic if the two functions
+    \begin{enumerate}
+      \item $\varphi_1 \circ f$,
+      \item $\varphi_2 \circ f$,
+    \end{enumerate}
+    are holomorphic wherever they make sense.
+    \begin{equation*}
+      \begin{tikzcd}
+        f^{-1}(U_1) \ar[rrrr, "\varphi_1 \circ f", swap, bend right] \ar[rr,"f|_{f^{-1}(U_1)}"] &  &  U_1 \ar[rr, "\varphi_1"] & & \bbc\\\\
+        f^{-1}(U_2) \ar[rr, "f|_{f^{-1}(U_2)}"] \ar[rrrr, "\varphi_2 \circ f", swap, bend right] &  & U_2 \ar[rr, "\varphi_2"] & & \bbc
+      \end{tikzcd}
+    \end{equation*}
+
+    \begin{qbox}
+      Which of the following functions are meromorphic functions on $\bbc$?
+      \begin{enumerate}
+        \item $f(z) = z$
+        \item \begin{align*}
+            f(z) = \begin{cases}
+                    z^{-1} & \mbox{ if } z \neq 0\\
+                    \infty & \mbox{ if } z = 0
+                  \end{cases}
+          \end{align*}
+        \item \begin{align*}
+            f(z) = \begin{cases}
+                    e^{1/z} & \mbox{ if } z \neq 0\\
+                    \infty & \mbox{ if } z = 0
+                  \end{cases}
+          \end{align*}
+      \end{enumerate}
+    \end{qbox}
+
+
+
+
+
+
+
+
+
+
+    \section*{Meromorphic functions on $\bbp^1$}
+    \begin{qbox}
+      Show that a function $f: \bbp^1 \rightarrow \bbp^1$ is meromorphic if the four functions
+      \begin{enumerate}
+        \item $\varphi_1 \circ f \circ \varphi_1^{-1}$,
+        \item $\varphi_1 \circ f \circ \varphi_2^{-1}$,
+        \item $\varphi_2 \circ f \circ \varphi_1^{-1}$,
+        \item $\varphi_2 \circ f \circ \varphi_2^{-1}$,
+      \end{enumerate}
+      are holomorphic wherever they make sense.
+    \end{qbox}
+
+    \begin{qbox}
+      Let $p(z)$ and $q(z)$ be polynomials with no common roots. Assume that $q(z)$ is not the 0 polynomial.
+
+      Show that the following function is a meromorphic function on $\bbp^1$.
+      \begin{align*}
+        f(z) = \begin{cases}
+          \dfrac{p(z)}{q(z)} & \mbox{ if } z \neq \infty, q(z) \neq 0, \\
+          \infty & \mbox{ if } z \neq \infty, q(z) = 0, \\
+          \lim \limits_{z \rightarrow \infty} \dfrac{p(z)}{q(z)} & \mbox{ if } z = \infty.
+      \end{cases}
+      \end{align*}
+      Such a function is called a \emph{rational function}. It is common to simply write $f(z) = \dfrac{p(z)}{q(z)}$.
+    \end{qbox}
+
+    Turns out these are all the meromorphic functions on $\bbp^1$.
+    \begin{theorem}
+      Every meromorphic function on $\bbp^1$ is a rational function.
+    \end{theorem}
+    The following exercises provide the proof of this theorem.
+
+    Let $f: \bbp^1 \rightarrow \bbp^1$ be a meromorphic function.
+    Let $\calz = f^{-1}(0) \cap \bbc$ and $\calp = f^{-1}(\infty) \cap \bbc$. $\calz$ is called the set of zeroes and $\calp$ is called the set of poles.
+    \begin{qbox}
+      Using the isolated zeroes property of complex differentiable functions argue that both the sets $\calz$ and $\calp$ are isolated i.e. for every point $x \in \calz$ there exists a neighborhood  $U$ of $x$ such that $U \cap \calz = \set{x}$. Similarly, for $\calp$.
+    \end{qbox}
+    \begin{qbox}
+      Using the fact that every infinite sequence in a compact set has a convergent subsequence, and that $\bbp^1$ is compact, argue that both $\calz$ and $\calp$ are finite sets.
+    \end{qbox}
+    Let $\calz = \set{z_1, \dots, z_m}$ and $\calp = \set{p_1, \dots, p_n}$.
+    Assume the following fact for now. We'll prove it in class tomorrow.
+    \begin{quote}
+      The function
+      \begin{align*}
+        g(z) = f(z) \cdot \dfrac{(z-p_1)^{k_1} \dots (z-p_n)^{k_n}}{(z-z_1)^{\ell_1} \dots (z-z_m)^{\ell_m}}
+      \end{align*}
+      is meromorphic and has no zeroes or poles, for some positive integers $k_1, \dots, k_n$ and $\ell_1, \dots, \ell_m$.
+    \end{quote}
+    \begin{qbox}
+      Check that the open mapping theorem \ref{th:OpenMappingTheorem} extends verbatim to meromorphic functions on $\bbp^1$.
+    \end{qbox}
+    \begin{qbox}
+      Using the open mapping theorem and Q.\ref{q:imageOfCompact} argue that $g$ is either a constant function or the image of $g$ is all of $\bbp^1$.\hint{You will need to use the fact that the only open and closed subsets of $\bbp^1$ are the empty set and $\bbp^1$ itself.}
+    \end{qbox}
+    Because the only zero or pole of $g$ is at $\infty$ (which can be one or the other) the image of $g$ cannot be all of $\bbp^1$. Hence, $g$ is a constant function i.e. $g(z) = c$ for some $c \in \bbc$. Hence,
+    \begin{align*}
+      &&
+      f(z) \cdot \dfrac{(z-p_1)^{k_1} \dots (z-p_n)^{k_n}}{(z-z_1)^{\ell_1} \dots (z-z_m)^{\ell_m}}
+      = c \\
+      \implies
+      &&
+      f(z) = c\dfrac{(z-z_1)^{\ell_1} \dots (z-z_m)^{\ell_m}}{(z-p_1)^{k_1} \dots (z-p_n)^{k_n}}.
+    \end{align*}
+\end{document}
